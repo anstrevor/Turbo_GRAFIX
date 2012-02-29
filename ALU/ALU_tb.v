@@ -9,16 +9,20 @@ wire[7:0] r;
 wire[3:0] cc;
 
 initial begin
-	$monitor("%b %b", r, n);
+	//$monitor("%b %b", r, n);
 	//$monitor("%b", n);
 	
-	a = 8'hAA;
-	b = 8'hAA;
-	n = 4'h0;
+	a = 8'h0F;
+	b = 8'h01;
+	n = 4'h3;
 	
-	#5 n = 4'h1;
+	/*#5 n = 4'h1;
 	#10 n = 4'h2;
 	#15 n = 4'h3;
+    #20 n = 4'h4;
+    #25 n = 4'h5;
+    #30 n = 4'h6;
+    #35 n = 4'h7;*/
 	
 end
 

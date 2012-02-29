@@ -18,6 +18,7 @@ module ALU(a, b, n, cc, r);
 	reg[7:0] r;
 	reg[3:0] cc;
 	
+    
 	//Run on n commands
 	always @ (a, b, n) begin
 			
@@ -25,16 +26,17 @@ module ALU(a, b, n, cc, r);
 			//	r = a;
 			//end
 			
-			$display(">>%b", n);
+			//$display(">>%b", n);
+            
+            //Case through all commands
 			case (n)
-				0:$display("000");
-				1:$display("001");
-				2:$display("010");
-				3:$display("011");
-				4:$display("100");
-					r = a;
-				5:$display("101");
-					r = b;
+				0:add;
+				1:subtract;
+				2:multiplyA;
+				3:divideA;
+				4:passA;
+				5:passB;//$display("101");
+					//r = b;
 				6:$display("110");
 				7:$display("111");
 				default:$display("XXX");
@@ -44,6 +46,74 @@ module ALU(a, b, n, cc, r);
 			
 			
 	end
+    
+    
+    //Task: Addition
+    task add;
+    begin
+        r = a + b;
+        //Need to set flags here
+        $display("%b + %b = %b", a, b, r);
+    end
+    endtask
+    
+    
+    //Task: Subtraction
+    task subtract;
+    begin
+        r = a - b;
+        //SetFlags
+        $display("%b - %b = %b", a, b, r);
+    end
+    endtask
+    
+    
+    //Task: Multiply A by 2
+    task multiplyA;
+    begin
+        r = a*2;
+        //SetFlags
+        $display("%b -> %b", a, r);
+    end
+    endtask
+
+    
+    //Task: Divide A by 2
+    task divideA;
+    begin
+        r = a/2;
+        //Set flags    
+        $display("%b -> %b", a, r);
+    end
+    endtask
+
+    
+    //Task: Pass through B bus
+    task passB;
+    begin
+        $display("101");
+        r = b;
+    end
+    endtask
+    
+    
+    //Task: Pass through bus A
+    task passA;
+    begin
+        $display("100");
+        r = a;
+    end
+    endtask
+    
+    
+    //Task: Max of A and B
+    task max;
+    begin
+    
+        $display("%b , %b  MAX= %b", a, b, r);
+    end
+    endtask
+
 
 
 endmodule
