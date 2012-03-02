@@ -28,6 +28,9 @@ module ALU(a, b, n, cc, r);
 			
 			//$display(">>%b", n);
             
+            //Clear CC register
+            cc = 4'h0;
+            
             //Case through all commands
 			case (n)
 				0:add;
@@ -37,9 +40,9 @@ module ALU(a, b, n, cc, r);
 				4:passA;
 				5:passB;//$display("101");
 					//r = b;
-				6:$display("110");
-				7:$display("111");
-				default:$display("XXX");
+				6:max;
+				7:min;
+				default:$display("Unknown Command");
 			endcase
 			
 			
@@ -52,7 +55,13 @@ module ALU(a, b, n, cc, r);
     task add;
     begin
         r = a + b;
-        //Need to set flags here
+        
+        cc[0] = 1;
+        if (r == 0)
+        begin
+            cc[1] = 1;
+        end
+        
         $display("%b + %b = %b", a, b, r);
     end
     endtask
@@ -62,7 +71,13 @@ module ALU(a, b, n, cc, r);
     task subtract;
     begin
         r = a - b;
-        //SetFlags
+        
+        cc[0] = 1;
+        if (r== 0)
+        begin 
+            cc[1] = 1;
+        end
+        
         $display("%b - %b = %b", a, b, r);
     end
     endtask
@@ -72,8 +87,14 @@ module ALU(a, b, n, cc, r);
     task multiplyA;
     begin
         r = a*2;
-        //SetFlags
-        $display("%b -> %b", a, r);
+        
+        cc[0] = 1;
+        if (r==0)
+        begin
+            cc[1] = 1;
+        end
+        
+        $display("%b a*2->r %b", a, r);
     end
     endtask
 
@@ -82,8 +103,14 @@ module ALU(a, b, n, cc, r);
     task divideA;
     begin
         r = a/2;
-        //Set flags    
-        $display("%b -> %b", a, r);
+        
+         cc[0] = 1;
+         if (r==0)
+         begin
+            cc[1] = 1;
+        end
+        
+        $display("%b a/2->r %b", a, r);
     end
     endtask
 
@@ -91,8 +118,9 @@ module ALU(a, b, n, cc, r);
     //Task: Pass through B bus
     task passB;
     begin
-        $display("101");
         r = b;
+        $display("%b  b=>r  %b", b, r);
+
     end
     endtask
     
@@ -100,8 +128,9 @@ module ALU(a, b, n, cc, r);
     //Task: Pass through bus A
     task passA;
     begin
-        $display("100");
         r = a;
+        $display("%b  a=>r  %b", a, r);
+
     end
     endtask
     
@@ -109,12 +138,40 @@ module ALU(a, b, n, cc, r);
     //Task: Max of A and B
     task max;
     begin
-    
+        if( a >= b)
+        begin
+            r = a;
+            cc[2] = 1;
+        end
+        else
+        begin 
+            r = b;
+            cc[3] = 1;
+        end
+        
         $display("%b , %b  MAX= %b", a, b, r);
     end
     endtask
-
-
+    
+    
+    //Task: Min of A and B
+    task min;
+    begin
+        if( a < b)
+        begin
+            r = a;
+            cc[3] = 1;
+        end
+        else
+        begin
+            r = b;
+            cc[2] = 1;
+        end
+        
+        $display("%b , %b  MIN= %b", a, b, r);
+    end
+    endtask
+        
 
 endmodule
 		
