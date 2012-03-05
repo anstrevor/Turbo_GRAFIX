@@ -1,0 +1,18 @@
+#! /sw/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x102702fa0 .scope module, "DPU" "DPU" 2 1;
+ .timescale 0 0;
+v0x102701940_0 .net "Abus", 0 3, C4<zzzz>; 0 drivers
+v0x1027130f0_0 .net "Bbus", 0 3, C4<zzzz>; 0 drivers
+v0x102713180_0 .net "Kbus", 0 23, C4<zzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v0x102713200_0 .net "Rbus", 0 3, C4<zzzz>; 0 drivers
+v0x102713290_0 .net "select", 0 2, C4<zzz>; 0 drivers
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "DPU.v";

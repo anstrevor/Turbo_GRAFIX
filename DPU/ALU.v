@@ -20,7 +20,7 @@ module ALU(a, b, n, cc, r);
 	
     
 	//Run on n commands
-	always @ (a, b, n) begin      //Used to be (a, b, n)
+	always @ (a, b, n) begin
 			
 			//if(n[2] == 0) begin
 			//	r = a;
