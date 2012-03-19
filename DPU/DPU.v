@@ -1,12 +1,13 @@
 `include "ALU.v"
 
-module DPU(Abus, Bbus, Rbus, n, cc, Kbus);
+module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
 
 	//Inputs
 	input [3:0] Abus;
 	input [3:0] Bbus;
 	input [3:0] Rbus;
-	input [2:0] n;
+	input [3:0] n;
+	input [7:0] mData;
 	
 
 	//Outputs
@@ -20,9 +21,10 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus);
 	wire[3:0] Abus;
 	wire[3:0] Bbus;
 	wire[3:0] Rbus;
-	wire[2:0] n;
+	wire[3:0] n;
 	wire[3:0] cc;	
 	wire[7:0] tr;
+	wire[7:0] mData;
 
 	
 	reg[23:0] Kbus;
@@ -37,8 +39,12 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus);
 	
 	
 	//Pass through data to regFile
-	//always @ (n, Rbus) begin
-	//	if(n == 7) begin
+	always @ (n, Rbus) begin
+		if(n == 8) begin
+			regFile [Rbus] = mData;
+			$display(" New Data  = %b", regFile [Rbus]);
+		end
+	end
 			
 		
 	

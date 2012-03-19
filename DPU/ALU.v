@@ -3,7 +3,7 @@ module ALU(a, b, n, cc, r);
 	//Inputs
 	input [7:0] a;
 	input [7:0] b;
-	input [2:0] n;
+	input [3:0] n;
 
 	//Outputs
 	output [7:0] r;
@@ -13,7 +13,7 @@ module ALU(a, b, n, cc, r);
 	//Define I/O
 	wire[7:0] a;
 	wire[7:0] b;
-	wire[2:0] n;
+	wire[3:0] n;
 
 	reg[7:0] r;
 	reg[3:0] cc;
