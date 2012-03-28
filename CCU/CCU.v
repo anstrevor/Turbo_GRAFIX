@@ -103,62 +103,62 @@ module CCU(cmd, clk, Kbus);
 					n = 8;
 					Rbus = 8;
 					mData = cmd;
-					Pstate = Pstate + 1;
+					Lstate = Lstate + 1;
 				    end
 				5:begin //Colour
 					n = 8;
 					Rbus = 11;
 					mData = cmd;
-					Pstate = Pstate + 1;
+					Lstate = Lstate + 1;
 				    end
 				6:begin //Dy
                     n = 1;
                     Rbus = 1;
                     Abus = 8;
                     Bbus = 7;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
 				7:begin //Dx
                     n = 1;
                     Rbus = 0;
                     Abus = 6;
                     Bbus = 5;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
                 8:begin //EnoInc
                     n = 2;
                     Rbus = 4;
                     Abus = 1;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
                 9:begin //Error
                     n = 1;
                     Rbus = 2;
                     Abus = 4;
                     Bbus = 0;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
                 10:begin //EInc
                     n = 1;
                     Rbus = 3;
                     Abus = 2;
                     Bbus = 0;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
                 11:begin //X
                     n = 8;
                     Rbus = 9;
                     mData = cmd;
                     tx = cmd;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
                 12:begin //Y
                     n = 8;
                     Rbus = 10;
                     mData = cmd;
-                    Pstate = Pstate + 1;
+                    Lstate = Lstate + 1;
                     end
-                //11:loop; //Main loop
+                11:loop; //Main loop
                     
 			endcase
 		end
@@ -170,15 +170,54 @@ module CCU(cmd, clk, Kbus);
     task loop;
     begin
         while (tx <= txe) begin
+        
+            //X = X + 1
             n = 0;
             Rbus = 9;
             Abus = 9;
-            //HC one
+            Bbus = 12;
+            
+            //Output
+            
+            //Check Error < 0
+            n = 6;
+            Rbus = 14;
+            Abus = 2;
+            Bbus = 13;
+            if (cc[3] == 1) begin
+                //Set error = error + EnoInc
+                n = 0;
+                Rbus = 2;
+                Abus = 2;
+                Bbus = 4;
+                end
+            else begin
+                //Set Y = Y +1
+                n = 0;
+                Rbus = 10;
+                Abus = 10;
+                Bbus = 12;
+                
+                //Set Error = Error + EInc
+                n = 0;
+                Rbus = 2;
+                Abus = 2;
+                Bbus = 3;
+                end
+            end
         
+        Lstate = 0;
+        state = 0;
+    end
+    endtask
+        
+        
+            
+                
 	
 	
-	//
-	//Task: InitError
+
+	/*//Task: InitError
 	task initError;
 	begin
 		n = 1;
@@ -186,7 +225,7 @@ module CCU(cmd, clk, Kbus);
 		Bbus = 0;
 		Rbus = 2;
 	end
-	endtask
+	endtask*/
 	
 	
 	//Task: Plot point

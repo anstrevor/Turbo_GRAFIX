@@ -33,8 +33,9 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
 	
 	
 	//Fill RegFile with something
-	initial begin //always @ (Abus, Bbus, Rbus, n, cc, Kbus) begin
-		//fill;
+	initial begin 
+		regFile [12] = 1;
+        regFile [13] = 0;
 	end
 	
 	
