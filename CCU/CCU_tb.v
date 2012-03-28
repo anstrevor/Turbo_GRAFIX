@@ -14,11 +14,11 @@ module CCU_tb();
 		clk = 0;
 		i = 0;
 		
-		cmd = 80;
+		cmd = 76;
 		
-		for (i=0; i<6; i=i+1) begin
+		for (i=0; i<11; i=i+1) begin
 			#5 clk = ~clk;
-			$monitor("K = %b", Kbus);
+			//$monitor("K = %b", Kbus);
 			
 			cmd = cmd - i;
 		end

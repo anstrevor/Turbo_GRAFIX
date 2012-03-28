@@ -74,6 +74,15 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
 	//always @ (regFile[9], regFile[10], regFile[11]) begin
 	//	Kbus = (regFile[9] << 16) + (regFile[10] << 8) + (regFile[11]);
 	//end
+    
+    //Print registers
+    always @ (Rbus) begin
+        $display("\nPrintout:");
+        for (i=0; i<12; i=i+1) begin
+            $display("Bit #%d -> %b", i, regFile[i]);
+        end
+    end
+            
 	
 	
 	
