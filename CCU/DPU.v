@@ -1,6 +1,6 @@
 `include "ALU.v"
 
-module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
+module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 
 	//Inputs
 	input [3:0] Abus;
@@ -8,6 +8,7 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
 	input [3:0] Rbus;
 	input [3:0] n;
 	input [7:0] mData;
+    input outEnable;
 	
 
 	//Outputs
@@ -25,6 +26,7 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
 	wire[3:0] cc;	
 	wire[7:0] tr;
 	wire[7:0] mData;
+    wire outEnable;
 
 	
 	reg[23:0] Kbus;
@@ -58,7 +60,8 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
 		regFile [Bbus],
 		n,
 		cc,
-		tr
+		tr,
+        outEnable
 		);
 	
 	
@@ -82,6 +85,15 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
         for (i=0; i<12; i=i+1) begin
             $display("Bit #%d -> %b", i, regFile[i]);
         end
+    end
+    
+    
+    //Output to Screen (Video)
+    always @ (outEnable) begin
+        $display("\nVideo Out:");
+        $display("X -> %b", regfile[9]);
+        $display("Y -> %b", regfile[10]);
+        $display("Colour -> %b", regFile[11]);
     end
             
 	

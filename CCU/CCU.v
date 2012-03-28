@@ -27,6 +27,7 @@ module CCU(cmd, clk, Kbus);
 	reg[7:0] mData;
     reg [7:0] tx;
     reg [7:0] txe;
+    reg outEnable;
 	//reg [24:0] Kbus;
 	
 	
@@ -251,7 +252,7 @@ module CCU(cmd, clk, Kbus);
 	
 	
 	
-	DPU U_DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData);
+	DPU U_DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	
 	
 endmodule
