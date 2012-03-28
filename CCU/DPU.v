@@ -60,8 +60,7 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 		regFile [Bbus],
 		n,
 		cc,
-		tr,
-        outEnable
+		tr
 		);
 	
 	

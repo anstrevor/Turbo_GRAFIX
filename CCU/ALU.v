@@ -1,10 +1,9 @@
-module ALU(a, b, n, cc, r, outEnable);
+module ALU(a, b, n, cc, r);
 
 	//Inputs
 	input [7:0] a;
 	input [7:0] b;
 	input [3:0] n;
-    input outEnable;
 
 	//Outputs
 	output [7:0] r;
@@ -15,7 +14,6 @@ module ALU(a, b, n, cc, r, outEnable);
 	wire[7:0] a;
 	wire[7:0] b;
 	wire[3:0] n;
-    wire outEnable;
 
 	reg[7:0] r;
 	reg[3:0] cc;
