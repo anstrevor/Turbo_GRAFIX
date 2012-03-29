@@ -82,17 +82,19 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
     always @ (Rbus) begin
         $display("\nPrintout:");
         for (i=0; i<12; i=i+1) begin
-            $display("Bit #%d -> %b", i, regFile[i]);
+            $display("Bit #%d -> %d", i, regFile[i]);
         end
     end
     
     
     //Output to Screen (Video)
     always @ (outEnable) begin
+        begin
         $display("\nVideo Out:");
-        $display("X -> %b", regfile[9]);
-        $display("Y -> %b", regfile[10]);
+        $display("X -> %b", regFile[9]);
+        $display("Y -> %b", regFile[10]);
         $display("Colour -> %b", regFile[11]);
+        end
     end
             
 	

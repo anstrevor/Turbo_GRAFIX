@@ -16,12 +16,45 @@ module CCU_tb();
 		
 		cmd = 76;
 		
-		for (i=0; i<11; i=i+1) begin
+		/*for (i=0; i<11; i=i+1) begin
 			#5 clk = ~clk;
 			//$monitor("K = %b", Kbus);
 			
 			cmd = cmd - i;
-		end
+		end*/
+        
+        #5 clk = ~clk;
+        cmd = 2;
+        
+        #5 clk = ~clk;
+        cmd = 4;
+        
+        #5 clk = ~clk;
+        cmd = 6;
+        
+        #5 clk = ~clk;
+        cmd = 8;
+        
+        #5 clk = ~clk;
+        cmd = 10;
+        
+        #5 clk = ~clk;
+        cmd = 12;
+        
+        #5 clk = ~clk;
+        cmd = 14;
+        
+        #5 clk = ~clk;
+        cmd = 16;
+        
+        #5 clk = ~clk;
+        cmd = 18;
+        
+        #5 clk = ~clk;
+        cmd = 20;
+
+
+        
 	
 	end
 	
