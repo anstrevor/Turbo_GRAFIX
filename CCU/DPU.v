@@ -65,25 +65,21 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	
 	
 	//Update the 'Kbus'.  This is causing problems.  THe @ Tr is not ideal and since Rbus might
-	// not change... The good data gets lost...
+	// not change... The good data gets lost... added cc??
 	always @ (tr) begin
+        $display("Here: RBus = %d,  tr = %b", Rbus, tr);
 		regFile [Rbus] = tr;
 		//Kbus = regFile [Rbus];
-		Kbus = (regFile[9] << 16) + (regFile[10] << 8) + (regFile[11]);
-		//$display("Kbus @ tr = %b", Kbus);
 	end
 	
-	//Fill K bus
-	//always @ (regFile[9], regFile[10], regFile[11]) begin
-	//	Kbus = (regFile[9] << 16) + (regFile[10] << 8) + (regFile[11]);
-	//end
-    
+	    
     //Print registers
     always @ (Rbus) begin
-        $display("\nPrintout:");
+        $display("Printout:");
         for (i=0; i<12; i=i+1) begin
             $display("Bit #%d -> %d", i, regFile[i]);
         end
+        $display("\n");
     end
     
     

@@ -50,6 +50,8 @@ module CCU(cmd, clk, Kbus);
             
 		end
         else begin
+        
+            $monitor("Lstate = %d", Lstate);
 		
 		
             //Point state.  Fill X, Y, Color registers.  That's it for now.
@@ -182,7 +184,7 @@ module CCU(cmd, clk, Kbus);
             Bbus = 12;
             tx = tx + 1;
             
-            //Output
+            //outEnable = 1;
             
             //Check Error < 0
             n = 6;

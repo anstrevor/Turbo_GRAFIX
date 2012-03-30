@@ -52,6 +52,15 @@ module CCU_tb();
         
         #5 clk = ~clk;
         cmd = 20;
+        
+        #5 clk = ~clk;
+        cmd = 22;
+        
+        #5 clk = ~clk;
+        cmd = 24;
+        
+        #5 clk = ~clk;
+        cmd = 26;
 
 
         
