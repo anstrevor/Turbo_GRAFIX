@@ -163,36 +163,7 @@ module CCU(cmd, clk, Kbus);
                         mData = cmd;
                         Lstate = Lstate + 1;
                         end
-                        
-                    13: begin //Main loop start.  X = X + 1
-                        n = 0;
-                        Rbus = 9;
-                        Abus = 9;
-                        Bbus = 12;
-                        tx = tx + 1;
-                        Lstate = Lstate + 1;
-                        end
-                    14: begin //Main loop: check error < 0
-                        n = 6;
-                        Rbus = 14;
-                        Abus = 2;
-                        Bbus = 13;
-                        if (cc[3] == 1) begin
-                            //Set error = error + EnoInc
-                            Lstate = 15;
-                            end
-                        else begin
-                            //Set Y = Y +1   + Set Error = Error + EInc
-                            Lstate = 16;
-                            end
-                        end
-                    15: begin //Main loop: Set error = error + EnoInc 
-                        n = 0;
-                        Rbus = 2;
-                        Abus = 2;
-                        Bbus = 4;
-                        Lsate = 13;
-                        end
+                    13:loop; //Main loop
                         
                 endcase
             end
