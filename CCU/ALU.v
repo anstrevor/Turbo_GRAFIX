@@ -28,7 +28,7 @@ module ALU(a, b, n, cc, r, writeEnable);
 			//	r = a;
 			//end
 			
-			//$display(">>%b", n);
+			$display("Running ALU.  a = %b,  b = %b,  n = %b", a, b, n);
             
             //Clear CC register and write Enable
             cc = 4'h0;

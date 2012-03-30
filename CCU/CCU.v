@@ -51,7 +51,8 @@ module CCU(cmd, clk, Kbus);
 		end
         else begin
         
-            $monitor("Lstate = %d", Lstate);
+            //$monitor("Lstate = %d", Lstate);
+            $display("Lstate = %d", Lstate);
 		
 		
             //Point state.  Fill X, Y, Color registers.  That's it for now.
@@ -84,6 +85,7 @@ module CCU(cmd, clk, Kbus);
             //Line State.  Run that algorithm
             if(state == 2)
             begin
+                //$display("Lstate = %d", Lstate);
                 case (Lstate)
                     1:begin //Xs
                         n = 8;
@@ -165,6 +167,7 @@ module CCU(cmd, clk, Kbus);
                         end
                         
                     13: begin //Main loop start.  X = X + 1
+                        $display("State 13");
                         n = 0;
                         Rbus = 9;
                         Abus = 9;
@@ -173,6 +176,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = Lstate + 1;
                         end
                     14: begin //Main loop: check error < 0
+                        $display("State 14");
                         n = 6;
                         Rbus = 14;
                         Abus = 2;
@@ -187,12 +191,40 @@ module CCU(cmd, clk, Kbus);
                             end
                         end
                     15: begin //Main loop: Set error = error + EnoInc 
+                        $display("State 15");
                         n = 0;
                         Rbus = 2;
                         Abus = 2;
                         Bbus = 4;
-                        Lsate = 13;
+                        Lstate = 18;
                         end
+                    16: begin //Main loop: Set Y = Y + 1.  P1 of 2.
+                        $display("State 16");
+                        n = 0;
+                        Rbus = 10;
+                        Abus = 10;
+                        Bbus = 12;
+                        Lstate = Lstate + 1;
+                        end
+                    17: begin //Set error = error + EInc
+                        $display("State 17");
+                        n = 0;
+                        Rbus = 2;
+                        Abus = 2;
+                        Bbus = 3;
+                        Lstate = 18;
+                        end
+                    18: begin //End of loop.  Detrmine if the loop should continue
+                        $display("State 18");
+                        if (tx <= txe) begin
+                            Lstate = 13;
+                        end
+                        else begin
+                            Lstate = 0;
+                            state = 0;
+                        end
+                        end
+                        
                         
                 endcase
             end
@@ -202,7 +234,7 @@ module CCU(cmd, clk, Kbus);
     
     
     //Task: Loop
-    task loop;
+    /*task loop;
     begin
         while (tx <= txe) begin
         
@@ -245,7 +277,7 @@ module CCU(cmd, clk, Kbus);
         Lstate = 0;
         state = 0;
     end
-    endtask
+    endtask*/
         
         
             
