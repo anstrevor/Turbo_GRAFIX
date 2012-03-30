@@ -27,6 +27,7 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	wire[7:0] tr;
 	wire[7:0] mData;
     wire outEnable;
+    wire writeEnable;
 
 	
 	reg[23:0] Kbus;
@@ -60,16 +61,19 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 		regFile [Bbus],
 		n,
 		cc,
-		tr
+		tr,
+        writeEnable
 		);
 	
 	
 	//Update the 'Kbus'.  This is causing problems.  THe @ Tr is not ideal and since Rbus might
 	// not change... The good data gets lost... added cc??
-	always @ (tr) begin
-        $display("Here: RBus = %d,  tr = %b", Rbus, tr);
-		regFile [Rbus] = tr;
-		//Kbus = regFile [Rbus];
+	always @ (tr, writeEnable) begin
+        if (writeEnable == 1) begin 
+            $display("Here: RBus = %d,  tr = %b", Rbus, tr);
+            regFile [Rbus] = tr;
+            //Kbus = regFile [Rbus];
+        end
 	end
 	
 	    

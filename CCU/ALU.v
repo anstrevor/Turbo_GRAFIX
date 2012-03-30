@@ -1,4 +1,4 @@
-module ALU(a, b, n, cc, r);
+module ALU(a, b, n, cc, r, writeEnable);
 
 	//Inputs
 	input [7:0] a;
@@ -8,6 +8,7 @@ module ALU(a, b, n, cc, r);
 	//Outputs
 	output [7:0] r;
 	output [3:0] cc;
+    output writeEnable;
 
 
 	//Define I/O
@@ -17,6 +18,7 @@ module ALU(a, b, n, cc, r);
 
 	reg[7:0] r;
 	reg[3:0] cc;
+    reg writeEnable;
 	
     
 	//Run on n commands
@@ -28,8 +30,10 @@ module ALU(a, b, n, cc, r);
 			
 			//$display(">>%b", n);
             
-            //Clear CC register
+            //Clear CC register and write Enable
             cc = 4'h0;
+            writeEnable = 0;
+            
             
             //Case through all commands
 			case (n)
@@ -62,6 +66,7 @@ module ALU(a, b, n, cc, r);
             cc[1] = 1;
         end
         
+        writeEnable = 1;
         $display("%b + %b = %b", a, b, r);
     end
     endtask
@@ -78,6 +83,7 @@ module ALU(a, b, n, cc, r);
             cc[1] = 1;
         end
         
+        writeEnable = 1;
         $display("%b - %b = %b", a, b, r);
     end
     endtask
@@ -94,6 +100,7 @@ module ALU(a, b, n, cc, r);
             cc[1] = 1;
         end
         
+        writeEnable = 1;
         $display("%b a*2->r %b", a, r);
     end
     endtask
@@ -110,6 +117,7 @@ module ALU(a, b, n, cc, r);
             cc[1] = 1;
         end
         
+        writeEnable = 1;
         $display("%b a/2->r %b", a, r);
     end
     endtask
@@ -119,6 +127,8 @@ module ALU(a, b, n, cc, r);
     task passB;
     begin
         r = b;
+        
+        writeEnable = 1;
         $display("%b  b=>r  %b", b, r);
 
     end
@@ -129,6 +139,8 @@ module ALU(a, b, n, cc, r);
     task passA;
     begin
         r = a;
+        
+        writeEnable = 1;
         $display("%b  a=>r  %b", a, r);
 
     end
@@ -149,6 +161,7 @@ module ALU(a, b, n, cc, r);
             cc[3] = 1;
         end
         
+        writeEnable = 1;
         $display("%b , %b  MAX= %b", a, b, r);
     end
     endtask
@@ -168,6 +181,7 @@ module ALU(a, b, n, cc, r);
             cc[2] = 1;
         end
         
+        writeEnable = 1;
         $display("%b , %b  MIN= %b", a, b, r);
     end
     endtask
