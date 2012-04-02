@@ -17,6 +17,8 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	
 	//Memory Block
 	reg [7:0] regFile[15:0];
+    reg [7:0] accuA;
+    reg [7:0] accuB;
 	
 	//Define I/O
 	wire[3:0] Abus;
@@ -50,6 +52,10 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 			//Kbus = (regFile[9] << 16) + (regFile[10] << 8) + (regFile[11]);
 			//$monitor(" Kbus @ new data = %b", Kbus);
 		end
+        else begin
+            accuA = regFile [Abus];
+            accuB = regFile [Bbus];
+        end
 	end
 			
 		
@@ -57,8 +63,8 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	
 	//Run ALU
 	ALU U_ALU(
-		regFile [Abus],
-		regFile [Bbus],
+		accuA,
+		accuB,
 		n,
 		cc,
 		tr,
