@@ -64,7 +64,7 @@ module CCU_tb();
         #5 clk = ~clk;
         
         
-        for (i=0; i<11; i=i+1) begin
+        for (i=0; i<50; i=i+1) begin
 			#5 clk = ~clk;
             end
 

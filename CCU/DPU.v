@@ -76,7 +76,7 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	// not change... The good data gets lost... added cc??
 	always @ (tr, writeEnable) begin
         if (writeEnable == 1) begin 
-            $display("Here: RBus = %d,  tr = %b", Rbus, tr);
+            //$display("Here: RBus = %d,  tr = %b", Rbus, tr);
             regFile [Rbus] = tr;
             //Kbus = regFile [Rbus];
         end
@@ -85,13 +85,13 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	
 	    
     //Print registers
-    /*always @ (Rbus) begin
+    always @ (Rbus) begin
         $display("Printout:");
         for (i=0; i<12; i=i+1) begin
             $display("Bit #%d -> %d", i, regFile[i]);
         end
         $display("\n");
-    end*/
+    end
     
     
     //Output to Screen (Video)

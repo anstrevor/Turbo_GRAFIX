@@ -28,7 +28,7 @@ module ALU(a, b, n, cc, r, writeEnable);
 			//	r = a;
 			//end
 			
-			$display("Running ALU.  a = %b,  b = %b,  n = %b", a, b, n);
+			//$display("Running ALU.  a = %b,  b = %b,  n = %b", a, b, n);
             
             //Clear CC register and write Enable
             cc = 4'h0;
@@ -67,7 +67,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        $display("%b + %b = %b", a, b, r);
+        //$display("%b + %b = %b", a, b, r);
     end
     endtask
     
@@ -84,7 +84,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        $display("%b - %b = %b", a, b, r);
+        //$display("%b - %b = %b", a, b, r);
     end
     endtask
     
@@ -101,7 +101,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        $display("%b a*2->r %b", a, r);
+        //$display("%b a*2->r %b", a, r);
     end
     endtask
 
@@ -118,7 +118,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        $display("%b a/2->r %b", a, r);
+        //$display("%b a/2->r %b", a, r);
     end
     endtask
 
@@ -129,7 +129,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         r = b;
         
         writeEnable = 1;
-        $display("%b  b=>r  %b", b, r);
+        //$display("%b  b=>r  %b", b, r);
 
     end
     endtask
@@ -141,7 +141,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         r = a;
         
         writeEnable = 1;
-        $display("%b  a=>r  %b", a, r);
+        //$display("%b  a=>r  %b", a, r);
 
     end
     endtask
@@ -162,7 +162,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        $display("%b , %b  MAX= %b", a, b, r);
+        //$display("%b , %b  MAX= %b", a, b, r);
     end
     endtask
     
@@ -182,7 +182,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        $display("%b , %b  MIN= %b", a, b, r);
+        //$display("%b , %b  MIN= %b", a, b, r);
     end
     endtask
         

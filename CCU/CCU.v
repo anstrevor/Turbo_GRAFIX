@@ -168,7 +168,7 @@ module CCU(cmd, clk, Kbus);
                     12:begin //Y, pass Ys
                         n = 5;
                         Rbus = 10;
-                        Abus = 7;
+                        Bbus = 7;
                         Lstate = Lstate + 1;
                         end
                         
@@ -184,7 +184,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = Lstate + 1;
                         end
                     14: begin //Main loop: check error < 0
-                        $display("State 14");
+                        //$display("State 14");
                         n = 6;
                         Rbus = 14;
                         Abus = 2;
@@ -223,7 +223,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = 18;
                         end
                     18: begin //End of loop.  Detrmine if the loop should continue
-                        //$display("State 18");
+                        $display("State 18");
                         if (tx <= txe) begin
                             Lstate = 13;
                         end
