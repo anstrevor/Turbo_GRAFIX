@@ -23,19 +23,19 @@ module CCU_tb();
 			cmd = cmd - i;
 		end*/
         
-        #5 clk = ~clk;
-        cmd = 2;
+        #5 clk = ~clk;  //Xs
+        cmd = 0;
         
-        #5 clk = ~clk;
-        cmd = 4;
+        #5 clk = ~clk; //Ys
+        cmd = 0;
         
-        #5 clk = ~clk;
-        cmd = 6;
+        #5 clk = ~clk; //Xe
+        cmd = 50;
         
-        #5 clk = ~clk;
-        cmd = 8;
+        #5 clk = ~clk; //Ye
+        cmd = 30;
         
-        #5 clk = ~clk;
+        #5 clk = ~clk; //color
         cmd = 10;
         
         #5 clk = ~clk;
@@ -61,7 +61,12 @@ module CCU_tb();
         
         #5 clk = ~clk;
         #5 clk = ~clk;
+        #5 clk = ~clk;
         
+        
+        for (i=0; i<11; i=i+1) begin
+			#5 clk = ~clk;
+            end
 
 
         

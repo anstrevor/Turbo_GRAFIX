@@ -35,10 +35,13 @@ module CCU(cmd, clk, Kbus);
 		state = 0;
 		Pstate = 0;
 		Lstate = 0;
+        outEnable = 0;
 	end
 	
 	//Run at clock
 	always @ (posedge clk or negedge clk) begin
+    
+        //outEnable = 0;
 		
 		//Idle state
 		if(state == 0)
@@ -75,6 +78,9 @@ module CCU(cmd, clk, Kbus);
                         n = 8;
                         Rbus = 11;
                         mData = cmd;
+                        
+                        outEnable = ~outEnable;
+                        
                         Pstate = 0;
                         state = 0;
                         end
@@ -91,6 +97,7 @@ module CCU(cmd, clk, Kbus);
                         n = 8;
                         Rbus = 5;
                         mData = cmd;
+                        tx = cmd;
                         Lstate = Lstate + 1;
                         end
                     2:begin //Ys
@@ -152,17 +159,16 @@ module CCU(cmd, clk, Kbus);
                         Bbus = 0;
                         Lstate = Lstate + 1;
                         end
-                    11:begin //X
-                        n = 8;
+                    11:begin //X, pass Xs
+                        n = 4;
                         Rbus = 9;
-                        mData = cmd;
-                        tx = cmd;
+                        Abus = 5;
                         Lstate = Lstate + 1;
                         end
-                    12:begin //Y
-                        n = 8;
+                    12:begin //Y, pass Ys
+                        n = 5;
                         Rbus = 10;
-                        mData = cmd;
+                        Abus = 7;
                         Lstate = Lstate + 1;
                         end
                         
@@ -173,6 +179,8 @@ module CCU(cmd, clk, Kbus);
                         Abus = 9;
                         Bbus = 12;
                         tx = tx + 1;
+                        
+                        outEnable = ~outEnable;
                         Lstate = Lstate + 1;
                         end
                     14: begin //Main loop: check error < 0
@@ -199,7 +207,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = 18;
                         end
                     16: begin //Main loop: Set Y = Y + 1.  P1 of 2.
-                        $display("State 16");
+                        //$display("State 16");
                         n = 0;
                         Rbus = 10;
                         Abus = 10;
@@ -207,7 +215,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = Lstate + 1;
                         end
                     17: begin //Set error = error + EInc
-                        $display("State 17");
+                        //$display("State 17");
                         n = 0;
                         Rbus = 2;
                         Abus = 2;
@@ -215,7 +223,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = 18;
                         end
                     18: begin //End of loop.  Detrmine if the loop should continue
-                        $display("State 18");
+                        //$display("State 18");
                         if (tx <= txe) begin
                             Lstate = 13;
                         end
