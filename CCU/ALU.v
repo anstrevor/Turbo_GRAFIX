@@ -58,7 +58,16 @@ module ALU(a, b, n, cc, r, writeEnable);
     //Task: Addition
     task add;
     begin
-        r = a + b;
+    
+        if(a[7] == 1) begin
+            r = b - ~a;
+        end 
+        else if(b[7] == 1) begin
+            r = a - ~b;
+        end
+        else begin
+            r = a + b;
+        end
         
         cc[0] = 1;
         if (r == 0)
@@ -75,7 +84,15 @@ module ALU(a, b, n, cc, r, writeEnable);
     //Task: Subtraction
     task subtract;
     begin
-        r = a - b;
+    
+        if(a[7] == 1) begin
+            r = ~(~a + b);
+        end
+        else if(b[7] == 1) begin
+            r = a + ~b;  
+        end else begin
+            r = a - b;
+        end
         
         cc[0] = 1;
         if (r== 0)
@@ -150,7 +167,16 @@ module ALU(a, b, n, cc, r, writeEnable);
     //Task: Max of A and B
     task max;
     begin
-        if( a >= b)
+        
+        if(a[7] == 1 && b[7] != 1) begin
+            r = b;
+            cc[3] = 1;
+        end
+        else if(a[7] != 1 && b[7] == 1) begin
+            r = a;
+            cc[2] = 1;
+        end
+        else if( a >= b)
         begin
             r = a;
             cc[2] = 1;
@@ -162,7 +188,7 @@ module ALU(a, b, n, cc, r, writeEnable);
         end
         
         writeEnable = 1;
-        //$display("%b , %b  MAX= %b", a, b, r);
+        //$display("CC = %b", cc);
     end
     endtask
     

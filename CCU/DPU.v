@@ -85,13 +85,13 @@ module DPU(Abus, Bbus, Rbus, n, cc, Kbus, mData, outEnable);
 	
 	    
     //Print registers
-    always @ (Rbus) begin
+    /*always @ (Rbus) begin
         $display("Printout:");
         for (i=0; i<12; i=i+1) begin
             $display("Bit #%d -> %d", i, regFile[i]);
         end
         $display("\n");
-    end
+    end*/
     
     
     //Output to Screen (Video)

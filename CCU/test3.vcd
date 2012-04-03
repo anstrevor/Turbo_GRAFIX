@@ -1,0 +1,175 @@
+$date
+	Mon Apr  2 18:20:35 2012
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module CCU_tb $end
+$scope module U_CCU $end
+$var wire 24 ! Kbus [23:0] $end
+$var wire 4 " cc [3:0] $end
+$var wire 1 # clk $end
+$var wire 8 $ cmd [7:0] $end
+$var reg 4 % Abus [3:0] $end
+$var reg 4 & Bbus [3:0] $end
+$var reg 7 ' Lstate [6:0] $end
+$var reg 4 ( Pstate [3:0] $end
+$var reg 4 ) Rbus [3:0] $end
+$var reg 8 * mData [7:0] $end
+$var reg 4 + n [3:0] $end
+$var reg 1 , outEnable $end
+$var reg 2 - state [1:0] $end
+$var reg 8 . tx [7:0] $end
+$var reg 8 / txe [7:0] $end
+$scope module U_DPU $end
+$var wire 4 0 Abus [3:0] $end
+$var wire 4 1 Bbus [3:0] $end
+$var wire 4 2 Rbus [3:0] $end
+$var wire 4 3 cc [3:0] $end
+$var wire 8 4 mData [7:0] $end
+$var wire 4 5 n [3:0] $end
+$var wire 1 6 outEnable $end
+$var wire 8 7 tr [7:0] $end
+$var wire 1 8 writeEnable $end
+$var reg 24 9 Kbus [23:0] $end
+$var reg 8 : accuA [7:0] $end
+$var reg 8 ; accuB [7:0] $end
+$var reg 4 < i [3:0] $end
+$upscope $end
+$scope task line $end
+$upscope $end
+$scope task point $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx <
+bx ;
+bx :
+bx 9
+x8
+bx 7
+06
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+b1 -
+0,
+bx +
+bx *
+bx )
+b1 (
+b0 '
+bx &
+bx %
+b1010000 $
+0#
+bx "
+bx !
+$end
+#5
+08
+b0 "
+b0 3
+b10 (
+b0 *
+b0 4
+b1001 )
+b1001 2
+b1000 +
+b1000 5
+b0 $
+1#
+#10
+b11 (
+b1010 )
+b1010 2
+0#
+#15
+b0 -
+b0 (
+1,
+16
+b110010 *
+b110010 4
+b1011 )
+b1011 2
+b110010 $
+1#
+#20
+b1 (
+b1 -
+b1010000 $
+0#
+#25
+b10 (
+b1010 *
+b1010 4
+b1001 )
+b1001 2
+b1010 $
+1#
+#30
+b11 (
+b1100 *
+b1100 4
+b1010 )
+b1010 2
+b1100 $
+0#
+#35
+b0 -
+b0 (
+0,
+06
+b1110 *
+b1110 4
+b1011 )
+b1011 2
+b1110 $
+1#
+#40
+b1 (
+b1 -
+b1010000 $
+0#
+#45
+b10 (
+b10010 *
+b10010 4
+b1001 )
+b1001 2
+b10010 $
+1#
+#50
+b11 (
+b10100 *
+b10100 4
+b1010 )
+b1010 2
+b10100 $
+0#
+#55
+b0 -
+b0 (
+1,
+16
+b10110 *
+b10110 4
+b1011 )
+b1011 2
+b10110 $
+1#
+#60
+b11000 $
+0#

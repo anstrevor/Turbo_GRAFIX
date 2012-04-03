@@ -11,8 +11,14 @@ module CCU_tb();
 	
 	
 	initial begin
+    
+    
+        $dumpfile("test3.vcd");
+        $dumpvars(2,U_CCU);
+
 		clk = 0;
 		i = 0;
+        
 		
 		cmd = 76;
 		
@@ -64,9 +70,10 @@ module CCU_tb();
         #5 clk = ~clk;
         
         
-        for (i=0; i<50; i=i+1) begin
+        for (i=0; i<32; i=i+1) begin
 			#5 clk = ~clk;
-            end
+            cmd = 0;
+        end
 
 
         

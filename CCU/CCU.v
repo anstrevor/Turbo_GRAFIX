@@ -55,7 +55,7 @@ module CCU(cmd, clk, Kbus);
         else begin
         
             //$monitor("Lstate = %d", Lstate);
-            $display("Lstate = %d", Lstate);
+            //$display("Lstate = %d", Lstate);
 		
 		
             //Point state.  Fill X, Y, Color registers.  That's it for now.
@@ -173,7 +173,7 @@ module CCU(cmd, clk, Kbus);
                         end
                         
                     13: begin //Main loop start.  X = X + 1
-                        $display("State 13");
+                        //$display("State 13");
                         n = 0;
                         Rbus = 9;
                         Abus = 9;
@@ -189,17 +189,10 @@ module CCU(cmd, clk, Kbus);
                         Rbus = 14;
                         Abus = 2;
                         Bbus = 13;
-                        if (cc[3] == 1) begin
-                            //Set error = error + EnoInc
-                            Lstate = 15;
-                            end
-                        else begin
-                            //Set Y = Y +1   + Set Error = Error + EInc
-                            Lstate = 16;
-                            end
+                        Lstate = 19;
                         end
                     15: begin //Main loop: Set error = error + EnoInc 
-                        $display("State 15");
+                        //$display("State 15");
                         n = 0;
                         Rbus = 2;
                         Abus = 2;
@@ -223,7 +216,7 @@ module CCU(cmd, clk, Kbus);
                         Lstate = 18;
                         end
                     18: begin //End of loop.  Detrmine if the loop should continue
-                        $display("State 18");
+                        //$display("State 18");
                         if (tx <= txe) begin
                             Lstate = 13;
                         end
@@ -231,6 +224,17 @@ module CCU(cmd, clk, Kbus);
                             Lstate = 0;
                             state = 0;
                         end
+                        end
+                    19: begin
+                        //$display("cc [3] = %b", cc[3]);
+                        if (cc[3] == 1) begin
+                            //Set error = error + EnoInc
+                            Lstate = 15;
+                            end
+                        else begin
+                            //Set Y = Y +1   + Set Error = Error + EInc
+                            Lstate = 16;
+                            end
                         end
                         
                         
